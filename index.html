@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE TEN RINGS | Autonomous Biological Ecosystems</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts for Cinematic/Technical Aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Rajdhani', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        tr_black: '#050505',
+                        tr_gray: '#111111',
+                        tr_lightgray: '#222222',
+                        tr_red: '#d11124', /* Deep crimson accent */
+                        tr_red_glow: '#ff1e38',
+                        tr_text_muted: '#888888',
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #1f1f1f 1px, transparent 1px), linear-gradient(to bottom, #1f1f1f 1px, transparent 1px)",
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' }
+                        }
+                    },
+                    animation: {
+                        marquee: 'marquee 30s linear infinite'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base Cinematic Styles */
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+            /* Subtle CRT scanline effect */
+            background-image: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #222; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d11124; 
+        }
+
+        /* Glitch Text Effect */
+        .glitch-wrapper {
+            position: relative;
+        }
+        .glitch {
+            position: relative;
+            color: white;
+            z-index: 1;
+        }
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #050505;
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #d11124;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+            z-index: -1;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00ffff;
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+            z-index: -2;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(13px, 9999px, 86px, 0); }
+            5% { clip: rect(72px, 9999px, 15px, 0); }
+            10% { clip: rect(69px, 9999px, 100px, 0); }
+            15% { clip: rect(40px, 9999px, 16px, 0); }
+            20% { clip: rect(83px, 9999px, 100px, 0); }
+            25% { clip: rect(7px, 9999px, 35px, 0); }
+            30% { clip: rect(22px, 9999px, 60px, 0); }
+            35% { clip: rect(38px, 9999px, 12px, 0); }
+            40% { clip: rect(11px, 9999px, 83px, 0); }
+            45% { clip: rect(78px, 9999px, 5px, 0); }
+            50% { clip: rect(31px, 9999px, 79px, 0); }
+            55% { clip: rect(48px, 9999px, 94px, 0); }
+            60% { clip: rect(98px, 9999px, 12px, 0); }
+            65% { clip: rect(6px, 9999px, 54px, 0); }
+            70% { clip: rect(82px, 9999px, 30px, 0); }
+            75% { clip: rect(25px, 9999px, 73px, 0); }
+            80% { clip: rect(70px, 9999px, 14px, 0); }
+            85% { clip: rect(46px, 9999px, 88px, 0); }
+            90% { clip: rect(91px, 9999px, 20px, 0); }
+            95% { clip: rect(18px, 9999px, 65px, 0); }
+            100% { clip: rect(55px, 9999px, 3px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            5% { clip: rect(52px, 9999px, 74px, 0); }
+            10% { clip: rect(79px, 9999px, 85px, 0); }
+            15% { clip: rect(75px, 9999px, 5px, 0); }
+            20% { clip: rect(67px, 9999px, 61px, 0); }
+            25% { clip: rect(14px, 9999px, 79px, 0); }
+            30% { clip: rect(1px, 9999px, 46px, 0); }
+            35% { clip: rect(90px, 9999px, 38px, 0); }
+            40% { clip: rect(62px, 9999px, 89px, 0); }
+            45% { clip: rect(97px, 9999px, 27px, 0); }
+            50% { clip: rect(31px, 9999px, 100px, 0); }
+            55% { clip: rect(100px, 9999px, 12px, 0); }
+            60% { clip: rect(49px, 9999px, 35px, 0); }
+            65% { clip: rect(3px, 9999px, 94px, 0); }
+            70% { clip: rect(81px, 9999px, 23px, 0); }
+            75% { clip: rect(56px, 9999px, 42px, 0); }
+            80% { clip: rect(4px, 9999px, 76px, 0); }
+            85% { clip: rect(28px, 9999px, 51px, 0); }
+            90% { clip: rect(88px, 9999px, 18px, 0); }
+            95% { clip: rect(34px, 9999px, 67px, 0); }
+            100% { clip: rect(11px, 9999px, 80px, 0); }
+        }
+
+        /* Matrix Card Hover Effect */
+        .matrix-card {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .matrix-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: transparent;
+            transition: background 0.3s ease;
+        }
+        .matrix-card:hover {
+            transform: translateY(-5px);
+            background-color: #111;
+            box-shadow: 0 10px 30px -10px rgba(209, 17, 36, 0.2);
+        }
+        .matrix-card:hover::before {
+            background: #d11124;
+        }
+
+        /* UI Corner Brackets */
+        .ui-bracket {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-color: #444;
+            transition: border-color 0.3s;
+        }
+        .matrix-card:hover .ui-bracket {
+            border-color: #d11124;
+        }
+        .tl { top: -1px; left: -1px; border-top: 1px solid; border-left: 1px solid; }
+        .tr { top: -1px; right: -1px; border-top: 1px solid; border-right: 1px solid; }
+        .bl { bottom: -1px; left: -1px; border-bottom: 1px solid; border-left: 1px solid; }
+        .br { bottom: -1px; right: -1px; border-bottom: 1px solid; border-right: 1px solid; }
+
+        /* 3D Tilt Wrapper */
+        .matrix-card {
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+
+        /* Typing Cursor */
+        .cursor::after {
+            content: '_';
+            animation: blink 1s step-start infinite;
+            color: #d11124;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Fade In Animation for scroll */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            visibility: hidden;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+            visibility: visible;
+        }
+
+        /* Boot Screen */
+        #boot-screen {
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+        
+        /* Interactive Mouse Glow */
+        #mouse-glow {
+            background: radial-gradient(circle 600px at var(--mouse-x, 50vw) var(--mouse-y, 50vh), rgba(209, 17, 36, 0.08), transparent 40%);
+            will-change: background;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-tr_red selection:text-white">
+
+    <!-- Boot Sequence Overlay -->
+    <div id="boot-screen" class="fixed inset-0 z-[9999] bg-tr_black flex flex-col items-center justify-center font-mono text-sm text-tr_red uppercase">
+        
+        <!-- Center Cinematic Logo -->
+        <div class="relative mb-12 flex items-center justify-center">
+            <img src="Gemini_Generated_Image_px406vpx406vpx40.jpg" alt="The Ten Rings Bio-System" class="h-32 w-32 md:h-48 md:w-48 object-cover rounded-full border border-tr_lightgray shadow-[0_0_40px_rgba(209,17,36,0.3)] animate-pulse" onerror="this.src='https://placehold.co/200x200/111/d11124?text=TR'">
+            
+            <!-- Tech Orbital Rings -->
+            <div class="absolute inset-[-15px] rounded-full border-t-2 border-r-2 border-tr_red animate-spin opacity-80 shadow-[0_0_15px_rgba(209,17,36,0.5)]"></div>
+            <div class="absolute inset-[-30px] rounded-full border-b-2 border-l-2 border-tr_text_muted animate-[spin_3s_linear_infinite_reverse] opacity-40"></div>
+            <div class="absolute inset-[-45px] rounded-full border-t border-b border-[#00ffff]/20 animate-[spin_5s_linear_infinite] opacity-30"></div>
+        </div>
+
+        <div class="flex flex-col items-start max-w-md w-full px-8">
+            <span class="mb-2 text-white font-bold tracking-wider">>> Initializing Biological Core...</span>
+            <div id="boot-text" class="text-tr_text_muted mb-4 h-20 w-full overflow-hidden flex flex-col justify-end text-xs leading-tight"></div>
+            <div class="w-full bg-tr_gray h-1 mt-2 relative overflow-hidden">
+                <div id="boot-progress" class="bg-tr_red h-full w-0 transition-all duration-[400ms] relative">
+                    <!-- Progress Bar Flare -->
+                    <div class="absolute top-0 right-0 w-10 h-full bg-white/60 blur-[2px]"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Canvas Background -->
+    <canvas id="particle-canvas" class="fixed inset-0 z-0 pointer-events-none opacity-30"></canvas>
+
+    <!-- Dynamic Mouse Glow -->
+    <div id="mouse-glow" class="fixed inset-0 z-0 pointer-events-none mix-blend-screen"></div>
+
+    <!-- Project Modal Overlay (Hidden by default) -->
+    <div id="project-modal" class="fixed inset-0 z-[10000] hidden flex-col items-center justify-center">
+        <!-- Backdrop -->
+        <div id="modal-backdrop" class="absolute inset-0 bg-tr_black/90 backdrop-blur-sm cursor-pointer transition-opacity duration-300 opacity-0"></div>
+        
+        <!-- Modal Panel -->
+        <div id="modal-panel" class="relative z-10 w-full max-w-5xl mx-4 bg-tr_black border border-tr_lightgray shadow-[0_0_50px_rgba(209,17,36,0.15)] transform scale-95 opacity-0 transition-all duration-300 flex flex-col max-h-[90vh]">
+            <!-- UI Brackets -->
+            <div class="ui-bracket tl"></div><div class="ui-bracket tr"></div><div class="ui-bracket bl"></div><div class="ui-bracket br"></div>
+            
+            <!-- State 1: Loading Sequence -->
+            <div id="modal-loader" class="flex flex-col items-center justify-center py-32 px-8">
+                <!-- Spinning Radars -->
+                <div class="relative w-20 h-20 mb-8">
+                    <div class="absolute inset-0 border-2 border-t-tr_red border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin"></div>
+                    <div class="absolute inset-2 border-2 border-b-tr_text_muted border-r-transparent border-t-transparent border-l-transparent rounded-full animate-[spin_1.5s_linear_infinite_reverse]"></div>
+                    <div class="absolute inset-4 border border-[#00ffff]/30 rounded-full animate-[spin_3s_linear_infinite]"></div>
+                </div>
+                <div id="loader-title" class="font-mono text-tr_red text-lg uppercase tracking-widest mb-4">CONNECTING TO NODE...</div>
+                
+                <!-- Progress Bar -->
+                <div class="w-64 h-1 bg-tr_gray relative overflow-hidden mb-4 border border-tr_lightgray/50">
+                    <div id="loader-progress" class="absolute top-0 left-0 h-full w-0 bg-tr_red transition-all duration-200 ease-linear">
+                        <div class="absolute right-0 top-0 w-4 h-full bg-white/50 blur-[2px]"></div>
+                    </div>
+                </div>
+                
+                <!-- Terminal Output -->
+                <div id="loader-log" class="font-mono text-xs text-gray-500 uppercase h-4 animate-pulse"></div>
+            </div>
+
+            <!-- State 2: Project Details (Hidden initially) -->
+            <div id="modal-details" class="hidden flex-col h-full overflow-hidden">
+                <!-- Header -->
+                <div class="flex justify-between items-center p-4 md:p-6 border-b border-tr_lightgray bg-tr_gray/50 shrink-0">
+                    <div class="flex items-center gap-3">
+                        <span class="w-2 h-2 bg-tr_red rounded-full animate-pulse"></span>
+                        <h3 id="modal-title" class="font-mono text-lg md:text-xl font-bold text-white uppercase tracking-[0.2em] glitch" data-text="">PROJECT_TITLE</h3>
+                    </div>
+                    <button id="modal-close-btn" class="text-tr_text_muted hover:text-tr_red transition-colors w-8 h-8 flex items-center justify-center font-mono border border-transparent hover:border-tr_red bg-tr_black">
+                        [X]
+                    </button>
+                </div>
+                
+                <!-- Body -->
+                <div class="p-0 sm:p-8 overflow-y-auto flex-grow custom-scrollbar">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 h-full">
+                        <!-- Visual Container -->
+                        <div class="relative h-64 md:h-auto border border-tr_lightgray overflow-hidden bg-tr_gray">
+                            <img id="modal-img" src="" alt="Project Visual" class="w-full h-full object-cover opacity-70 mix-blend-screen hover:opacity-100 transition-opacity duration-500">
+                            <!-- Overlay Scanlines -->
+                            <div class="absolute inset-0 bg-[linear-gradient(rgba(209,17,36,0.1)_1px,transparent_1px)] bg-[size:100%_4px] pointer-events-none opacity-30"></div>
+                            <!-- Tech UI overlays -->
+                            <div class="absolute top-2 left-2 font-mono text-[10px] text-tr_red uppercase bg-tr_black/50 px-1 border border-tr_red/30">LIVESTREAM_OFFLINE</div>
+                            <div class="absolute bottom-2 right-2 font-mono text-[10px] text-tr_text_muted uppercase">SYS_MEM: OK</div>
+                        </div>
+                        
+                        <!-- Text/Data Container -->
+                        <div class="p-6 md:p-0 flex flex-col">
+                            <div class="font-mono text-xs text-tr_text_muted uppercase tracking-widest mb-6 border-b border-tr_lightgray pb-4 flex justify-between">
+                                <span>// SYSTEM DIRECTIVES</span>
+                                <span class="text-green-500">AUTH: VERIFIED</span>
+                            </div>
+                            <div id="modal-desc" class="text-sm md:text-base font-sans text-gray-300 leading-relaxed space-y-6">
+                                <!-- JS injected content -->
+                            </div>
+                            <div class="mt-auto pt-10 border-t border-tr_lightgray/50">
+                                <button id="close-modal-bottom" class="w-full py-4 border border-tr_red bg-tr_red/5 text-tr_red hover:bg-tr_red hover:text-white font-mono uppercase text-xs tracking-[0.2em] transition-all duration-300 shadow-[0_0_15px_rgba(209,17,36,0)] hover:shadow-[0_0_15px_rgba(209,17,36,0.4)]">
+                                    End Session \>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fixed Overlay UI Elements (Crosshairs) -->
+    <div class="fixed top-4 left-4 text-tr_text_muted font-mono text-xs opacity-50 z-50 pointer-events-none">+</div>
+    <div class="fixed top-4 right-4 text-tr_text_muted font-mono text-xs opacity-50 z-50 pointer-events-none">+</div>
+    <div class="fixed bottom-4 left-4 text-tr_text_muted font-mono text-xs opacity-50 z-50 pointer-events-none">+</div>
+    <div class="fixed bottom-4 right-4 text-tr_text_muted font-mono text-xs opacity-50 z-50 pointer-events-none">+</div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-40 bg-tr_black/80 backdrop-blur-md border-b border-tr_lightgray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo & Brand -->
+                <div class="flex items-center gap-4">
+                    <img src="Gemini_Generated_Image_px406vpx406vpx40.jpg" alt="The Ten Rings Logo" class="h-12 w-12 object-cover rounded-full border border-tr_lightgray" onerror="this.src='https://placehold.co/100x100/111/d11124?text=TR'">
+                    <div class="hidden sm:block">
+                        <span class="font-bold text-xl tracking-[0.2em] uppercase">The Ten Rings</span>
+                        <div class="text-[10px] font-mono text-tr_text_muted uppercase tracking-widest">Hub // Active</div>
+                    </div>
+                </div>
+                
+                <!-- Links (Terminal Style) -->
+                <div class="hidden md:flex space-x-8 font-mono text-sm">
+                    <a href="#about" class="text-tr_text_muted hover:text-white transition-colors duration-300">>> /about</a>
+                    <a href="#focus-areas" class="text-tr_text_muted hover:text-white transition-colors duration-300">>> /focus_areas</a>
+                    <a href="#projects" class="text-tr_text_muted hover:text-white transition-colors duration-300">>> /projects</a>
+                    <a href="#contact" class="text-tr_text_muted hover:text-white transition-colors duration-300">>> /contact</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-tr_text_muted hover:text-white focus:outline-none font-mono">
+                        [ MENU ]
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 bg-[length:50px_50px] bg-grid-pattern opacity-20 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(209,17,36,0.05)_0%,transparent_60%)] pointer-events-none"></div>
+
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-start justify-center">
+            
+            <div class="font-mono text-tr_red text-sm mb-4 tracking-widest uppercase flex items-center gap-2">
+                <span class="inline-block w-2 h-2 bg-tr_red rounded-full animate-pulse"></span>
+                Connecting Tech, Science & Nature
+            </div>
+
+            <div class="glitch-wrapper mb-2">
+                <h1 class="text-6xl sm:text-8xl md:text-9xl font-bold tracking-tighter uppercase glitch" data-text="THE TEN RINGS">
+                    THE TEN RINGS
+                </h1>
+            </div>
+
+            <div class="mt-8 max-w-3xl">
+                <p class="text-xl sm:text-2xl text-gray-300 font-light leading-relaxed">
+                    Where <span class="text-white font-medium">technology, life science and nature</span> connect to solve real-world problems.<br>
+                    One hub. Many projects. One mission: <span class="text-white font-medium">modern thinking for a better world.</span>
+                </p>
+            </div>
+
+            <!-- Terminal Typing Effect -->
+            <div class="mt-10 p-4 border border-tr_lightgray bg-tr_gray/50 rounded flex items-start gap-4 font-mono text-sm max-w-lg w-full">
+                <span class="text-tr_red">>_</span>
+                <div id="typewriter-text" class="cursor text-gray-400 min-h-[40px]"></div>
+            </div>
+
+            <div class="mt-12 flex flex-wrap gap-6 font-mono text-sm">
+                <a href="#projects" class="group relative px-6 py-3 bg-white text-black font-bold uppercase tracking-wider overflow-hidden">
+                    <span class="relative z-10 group-hover:text-white transition-colors duration-300">Explore the Projects \></span>
+                    <div class="absolute inset-0 bg-tr_red transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out z-0"></div>
+                </a>
+                <a href="#contact" class="px-6 py-3 border border-tr_lightgray text-white uppercase tracking-wider hover:bg-tr_lightgray transition-colors duration-300">
+                    Join the Mission
+                </a>
+            </div>
+
+            <div class="mt-20 border-l-4 border-tr_red pl-6 py-4 max-w-4xl font-sans text-lg sm:text-xl text-gray-400 leading-relaxed bg-tr_gray/40 backdrop-blur-sm p-6 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+                Every big problem sits where fields overlap: a disease that needs data, a farm that needs biology, a city that needs clean technology. <strong class="text-white font-semibold">THE TEN RINGS</strong> is a growing hub of projects built exactly in those overlaps.
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Data Marquee -->
+    <div class="w-full border-t border-b border-tr_lightgray bg-tr_gray/50 py-2 overflow-hidden flex whitespace-nowrap relative z-10">
+        <div class="animate-marquee flex items-center font-mono text-[10px] text-tr_text_muted uppercase tracking-widest min-w-max">
+            <span class="mx-4"><span class="text-tr_red">BIOINFORMATICS:</span> ACTIVE</span>
+            <span class="mx-4">DATA_SEQ_OK</span>
+            <span class="mx-4"><span class="text-white">COMPUTATIONAL_BIO:</span> ONLINE</span>
+            <span class="mx-4">MODEL_SIM_RUNNING</span>
+            <span class="mx-4"><span class="text-tr_red">GREEN_TECH:</span> DEPLOYED</span>
+            <span class="mx-4">EMISSIONS_TRACKING</span>
+            <span class="mx-4"><span class="text-white">LIFE_SCIENCE:</span> NOMINAL</span>
+            <span class="mx-4">THERAPEUTIC_DISCOVERY</span>
+            <span class="mx-4"><span class="text-tr_red">BIOINFORMATICS:</span> ACTIVE</span>
+            <span class="mx-4">DATA_SEQ_OK</span>
+            <span class="mx-4"><span class="text-white">COMPUTATIONAL_BIO:</span> ONLINE</span>
+            <span class="mx-4">MODEL_SIM_RUNNING</span>
+            <span class="mx-4"><span class="text-tr_red">GREEN_TECH:</span> DEPLOYED</span>
+            <span class="mx-4">EMISSIONS_TRACKING</span>
+            <span class="mx-4"><span class="text-white">LIFE_SCIENCE:</span> NOMINAL</span>
+            <span class="mx-4">THERAPEUTIC_DISCOVERY</span>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative border-t border-tr_lightgray fade-in-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="font-mono text-xs text-tr_text_muted uppercase tracking-widest mb-4">
+                // [01.00] SEC_ABOUT: PLATFORM OVERVIEW
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold uppercase mb-12">What is The Ten Rings?</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+                <!-- Text Content -->
+                <div class="space-y-6 text-lg text-gray-400 leading-relaxed font-sans">
+                    <p>
+                        <strong class="text-white">THE TEN RINGS</strong> is a parent platform that brings together projects blending technology, life science, green technology, bioinformatics and computational biology. 
+                    </p>
+                    <p>
+                        Each project, or “ring,” tackles a real-world challenge with a computational, evidence-driven approach.
+                    </p>
+                    <p class="p-6 border-l-2 border-tr_red bg-tr_gray/50 text-white italic shadow-lg">
+                        "Rings overlap, connect and strengthen one another. No problem is solved by one field alone, and neither is any ring."
+                    </p>
+                </div>
+
+                <!-- Beliefs / Core Values -->
+                <div class="space-y-6 font-mono text-sm">
+                    <h3 class="text-xl font-bold text-white uppercase mb-6 tracking-wider">Our Belief</h3>
+                    
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4 bg-tr_black p-4 border border-tr_lightgray hover:border-tr_red transition-colors">
+                            <i class="fas fa-project-diagram text-tr_red mt-1 text-lg"></i>
+                            <div>
+                                <strong class="text-white uppercase block mb-1">Problems are interdisciplinary</strong>
+                                <span class="text-gray-500 leading-relaxed">The best solutions come from combining fields.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4 bg-tr_black p-4 border border-tr_lightgray hover:border-tr_red transition-colors">
+                            <i class="fas fa-database text-tr_red mt-1 text-lg"></i>
+                            <div>
+                                <strong class="text-white uppercase block mb-1">Data is the new microscope</strong>
+                                <span class="text-gray-500 leading-relaxed">Computation lets us see patterns that experiments alone cannot.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4 bg-tr_black p-4 border border-tr_lightgray hover:border-tr_red transition-colors">
+                            <i class="fas fa-leaf text-tr_red mt-1 text-lg"></i>
+                            <div>
+                                <strong class="text-white uppercase block mb-1">Sustainability is not optional</strong>
+                                <span class="text-gray-500 leading-relaxed">Every solution should be kind to people and the planet.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4 bg-tr_black p-4 border border-tr_lightgray hover:border-tr_red transition-colors">
+                            <i class="fas fa-code-branch text-tr_red mt-1 text-lg"></i>
+                            <div>
+                                <strong class="text-white uppercase block mb-1">Build in the open</strong>
+                                <span class="text-gray-500 leading-relaxed">Ideas improve when they are shared, tested and challenged.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Focus Areas -->
+    <section id="focus-areas" class="py-24 relative border-t border-tr_lightgray bg-tr_gray/30 fade-in-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="font-mono text-xs text-tr_text_muted uppercase tracking-widest mb-4">
+                // SEC_02: THE FOCUS AREAS
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold uppercase mb-12">The Rings</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="matrix-card p-6 border border-tr_lightgray bg-tr_black flex flex-col h-full">
+                    <div class="ui-bracket tl"></div><div class="ui-bracket tr"></div><div class="ui-bracket bl"></div><div class="ui-bracket br"></div>
+                    <div class="text-tr_red mb-4 text-2xl"><i class="fas fa-dna"></i></div>
+                    <h3 class="text-xl font-bold text-white uppercase mb-2">Bioinformatics</h3>
+                    <p class="text-sm font-sans text-gray-400 mt-auto">Making sense of biological data: genes, proteins, genomes.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="matrix-card p-6 border border-tr_lightgray bg-tr_black flex flex-col h-full">
+                    <div class="ui-bracket tl"></div><div class="ui-bracket tr"></div><div class="ui-bracket bl"></div><div class="ui-bracket br"></div>
+                    <div class="text-tr_red mb-4 text-2xl"><i class="fas fa-laptop-medical"></i></div>
+                    <h3 class="text-xl font-bold text-white uppercase mb-2">Computational Biology</h3>
+                    <p class="text-sm font-sans text-gray-400 mt-auto">Modelling and simulating living systems.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="matrix-card p-6 border border-tr_lightgray bg-tr_black flex flex-col h-full">
+                    <div class="ui-bracket tl"></div><div class="ui-bracket tr"></div><div class="ui-bracket bl"></div><div class="ui-bracket br"></div>
+                    <div class="text-tr_red mb-4 text-2xl"><i class="fas fa-heartbeat"></i></div>
+                    <h3 class="text-xl font-bold text-white uppercase mb-2">Life Science & Health</h3>
+                    <p class="text-sm font-sans text-gray-400 mt-auto">Understanding disease, therapeutics and wellbeing.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="matrix-card p-6 border border-tr_lightgray bg-tr_black flex flex-col h-full">
+                    <div class="ui-bracket tl"></div><div class="ui-bracket tr"></div><div class="ui-bracket bl"></div><div class="ui-bracket br"></div>
+                    <div class="text-tr_red mb-4 text-2xl"><i class="fas fa-seedling"></i></div>
+                    <h3 class="text-xl font-bold text-white uppercase mb-2">Green Technology</h3>
+                    <p class="text-sm font-sans text-gray-400 mt-auto">Clean, sustainable and low-impact solutions.</p>
+                </div>
+                <!-- Card 5 -->
+                <div class="matrix-card p-6 border border-tr_lightgray bg-tr_black flex flex-col h-full">
+                    <div class="ui-bracket tl"></div><div class="ui-bracket tr"></div><div class="ui-bracket bl"></div><div class="ui-bracket br"></div>
+                    <div class="text-tr_red mb-4 text-2xl"><i class="fas fa-microchip"></i></div>
+                    <h3 class="text-xl font-bold text-white uppercase mb-2">Computational Approaches</h3>
+                    <p class="text-sm font-sans text-gray-400 mt-auto">Algorithms, AI and data analysis to accelerate discovery.</p>
+                </div>
+                <!-- Card 6 -->
+                <div class="matrix-card p-6 border border-tr_lightgray bg-tr_black flex flex-col h-full">
+                    <div class="ui-bracket tl"></div><div class="ui-bracket tr"></div><div class="ui-bracket bl"></div><div class="ui-bracket br"></div>
+                    <div class="text-tr_red mb-4 text-2xl"><i class="fas fa-globe"></i></div>
+                    <h3 class="text-xl font-bold text-white uppercase mb-2">Real-World Innovation</h3>
+                    <p class="text-sm font-sans text-gray-400 mt-auto">Turning research ideas into practical impact.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Projects -->
+    <section id="projects" class="py-24 relative border-t border-tr_lightgray fade-in-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="font-mono text-xs text-tr_text_muted uppercase tracking-widest mb-4">
+                // SEC_03: ACTIVE ECOSYSTEMS
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold uppercase mb-6">Our Projects</h2>
+            <p class="text-lg text-gray-400 font-sans max-w-3xl mb-12">
+                Each project on this site starts with a real problem and ends with a practical, testable idea.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- HARIYALI 2.0 -->
+                <div class="matrix-card border border-tr_lightgray bg-tr_black flex flex-col group overflow-hidden p-6 sm:p-8">
+                    <div class="ui-bracket tl"></div><div class="ui-bracket tr"></div><div class="ui-bracket bl"></div><div class="ui-bracket br"></div>
+                    
+                    <h3 class="text-2xl font-bold text-white mb-6 uppercase tracking-tight">Hariyali 2.0</h3>
+                    
+                    <div class="space-y-4 text-sm font-sans text-gray-400 flex-grow">
+                        <p><strong class="text-white block mb-1">The problem:</strong> Desertification and dropping crop yields in hostile, shifting climates.</p>
+                        <p><strong class="text-white block mb-1">Our approach:</strong> Engineered soil microbiomes and drought-resistant synthetic plasmids to restore ecological balance.</p>
+                        <p><strong class="text-white block mb-1">Rings involved:</strong> <span class="font-mono text-xs text-tr_text_muted">Bioinformatics · Green Tech · Computational Approaches</span></p>
+                        <div class="pt-2"><strong class="text-white mr-2">Status:</strong> <span class="inline-block border border-tr_red/30 bg-tr_red/10 text-tr_red px-2 py-1 font-mono uppercase text-[10px]">In progress</span></div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-tr_lightgray">
+                        <button data-project="hariyali" class="project-preview-btn w-full text-left text-tr_red hover:text-white font-mono uppercase tracking-wider text-xs transition-colors flex items-center gap-2 group-hover:gap-3 duration-300">
+                            Initiate Preview <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. GUTEK -->
+                <div class="matrix-card border border-tr_lightgray bg-tr_black flex flex-col group overflow-hidden p-6 sm:p-8">
+                    <div class="ui-bracket tl"></div><div class="ui-bracket tr"></div><div class="ui-bracket bl"></div><div class="ui-bracket br"></div>
+                    
+                    <h3 class="text-2xl font-bold text-white mb-6 uppercase tracking-tight">Gutek</h3>
+                    
+                    <div class="space-y-4 text-sm font-sans text-gray-400 flex-grow">
+                        <p><strong class="text-white block mb-1">The problem:</strong> Fragile, heavily polluting petrochemical supply chains for materials.</p>
+                        <p><strong class="text-white block mb-1">Our approach:</strong> Harnessing heavily edited yeast and bacterial chassis to weave advanced polymers.</p>
+                        <p><strong class="text-white block mb-1">Rings involved:</strong> <span class="font-mono text-xs text-tr_text_muted">Bioinformatics · Green Tech · Computational Approaches</span></p>
+                        <div class="pt-2"><strong class="text-white mr-2">Status:</strong> <span class="inline-block border border-tr_red/30 bg-tr_red/10 text-tr_red px-2 py-1 font-mono uppercase text-[10px]">In progress</span></div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-tr_lightgray">
+                        <button data-project="gutek" class="project-preview-btn w-full text-left text-tr_red hover:text-white font-mono uppercase tracking-wider text-xs transition-colors flex items-center gap-2 group-hover:gap-3 duration-300">
+                            Initiate Preview <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. AEGIS -->
+                <div class="matrix-card border border-tr_lightgray bg-tr_black flex flex-col group overflow-hidden p-6 sm:p-8">
+                    <div class="ui-bracket tl"></div><div class="ui-bracket tr"></div><div class="ui-bracket bl"></div><div class="ui-bracket br"></div>
+                    
+                    <h3 class="text-2xl font-bold text-white mb-6 uppercase tracking-tight">Project Aegis</h3>
+                    
+                    <div class="space-y-4 text-sm font-sans text-gray-400 flex-grow">
+                        <p><strong class="text-white block mb-1">The problem:</strong> Extreme vulnerability to unknown pathogenic mutations breaching perimeters.</p>
+                        <p><strong class="text-white block mb-1">Our approach:</strong> Distributed network of synthetic immune-system sensors and sequence analyzers.</p>
+                        <p><strong class="text-white block mb-1">Rings involved:</strong> <span class="font-mono text-xs text-tr_text_muted">Bioinformatics · Computational Biology · Life Science</span></p>
+                        <div class="pt-2"><strong class="text-white mr-2">Status:</strong> <span class="inline-block border border-gray-600 bg-gray-800 text-gray-400 px-2 py-1 font-mono uppercase text-[10px]">Idea</span></div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-tr_lightgray">
+                        <button data-project="aegis" class="project-preview-btn w-full text-left text-tr_red hover:text-white font-mono uppercase tracking-wider text-xs transition-colors flex items-center gap-2 group-hover:gap-3 duration-300">
+                            Initiate Preview <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-12 p-5 border border-tr_lightgray bg-tr_black text-gray-400 font-mono text-sm flex items-start gap-4">
+                <span class="text-tr_red animate-pulse">>_</span>
+                <p>New projects are being added. Every ring begins as an idea; the first ones are on their way. Stay tuned.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Projects -->
+    <section id="upcoming" class="py-24 relative border-t border-tr_lightgray bg-tr_gray/30 fade-in-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-mono text-tr_text_muted mb-10 flex items-center gap-4">
+                <i class="fas fa-hourglass-half text-tr_red animate-pulse"></i>
+                Upcoming Projects
+            </h2>
+            
+            <div class="flex flex-wrap gap-4">
+                <div class="border border-tr_lightgray border-dashed bg-tr_black px-6 py-4 text-white font-mono uppercase text-sm hover:border-tr_red hover:bg-tr_gray transition-all cursor-crosshair">
+                    Project Metaearth
+                </div>
+                <div class="border border-tr_lightgray border-dashed bg-tr_black px-6 py-4 text-white font-mono uppercase text-sm hover:border-tr_red hover:bg-tr_gray transition-all cursor-crosshair">
+                    Project Bioforge
+                </div>
+                <div class="border border-tr_lightgray border-dashed bg-tr_black px-6 py-4 text-white font-mono uppercase text-sm hover:border-tr_red hover:bg-tr_gray transition-all cursor-crosshair">
+                    Project Immunexis
+                </div>
+                <div class="border border-tr_lightgray border-dashed bg-tr_black px-6 py-4 text-white font-mono uppercase text-sm hover:border-tr_red hover:bg-tr_gray transition-all cursor-crosshair">
+                    Project Oncotrace
+                </div>
+                <div class="border border-tr_lightgray border-dashed bg-tr_black px-6 py-4 text-white font-mono uppercase text-sm hover:border-tr_red hover:bg-tr_gray transition-all cursor-crosshair">
+                    Project Nanogenix
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology / Information -->
+    <section id="methodology" class="py-24 relative border-t border-tr_lightgray fade-in-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+                
+                <!-- How We Work -->
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold uppercase mb-8">How We Work</h2>
+                    <div class="space-y-4 font-mono text-sm text-gray-300">
+                        <div class="flex gap-6 p-6 border border-tr_lightgray bg-tr_black hover:border-tr_red transition-colors items-center group">
+                            <span class="text-tr_red font-bold text-2xl group-hover:scale-110 transition-transform">1.</span>
+                            <span class="leading-snug">Identify a real-world problem worth solving</span>
+                        </div>
+                        <div class="flex gap-6 p-6 border border-tr_lightgray bg-tr_black hover:border-tr_red transition-colors items-center group">
+                            <span class="text-tr_red font-bold text-2xl group-hover:scale-110 transition-transform">2.</span>
+                            <span class="leading-snug">Research the science and existing solutions</span>
+                        </div>
+                        <div class="flex gap-6 p-6 border border-tr_lightgray bg-tr_black hover:border-tr_red transition-colors items-center group">
+                            <span class="text-tr_red font-bold text-2xl group-hover:scale-110 transition-transform">3.</span>
+                            <span class="leading-snug">Compute by analysing data, building models and testing ideas</span>
+                        </div>
+                        <div class="flex gap-6 p-6 border border-tr_lightgray bg-tr_black hover:border-tr_red transition-colors items-center group">
+                            <span class="text-tr_red font-bold text-2xl group-hover:scale-110 transition-transform">4.</span>
+                            <span class="leading-snug">Design a sustainable, practical approach</span>
+                        </div>
+                        <div class="flex gap-6 p-6 border border-tr_lightgray bg-tr_black hover:border-tr_red transition-colors items-center group">
+                            <span class="text-tr_red font-bold text-2xl group-hover:scale-110 transition-transform">5.</span>
+                            <span class="leading-snug">Share the results openly</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-16">
+                    <!-- Why It Matters -->
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold uppercase mb-6">Why It Matters</h2>
+                        <p class="text-gray-400 leading-relaxed font-sans text-lg border-l-4 border-tr_red pl-6 py-3 bg-tr_black/50 shadow-md">
+                            Climate change, antimicrobial resistance, food security and new diseases are not problems for one discipline. They need people who can read DNA and write code, and who understand ecosystems as well as algorithms. <strong class="text-white">THE TEN RINGS</strong> is built for that kind of thinking.
+                        </p>
+                    </div>
+
+                    <!-- Who It's For -->
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold uppercase mb-8">Who It’s For</h2>
+                        <ul class="space-y-5 font-sans text-gray-400 text-lg">
+                            <li class="flex items-start gap-4">
+                                <i class="fas fa-caret-right text-tr_red mt-1.5 text-xl"></i>
+                                <span>Students and early researchers looking for project ideas and collaborators</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <i class="fas fa-caret-right text-tr_red mt-1.5 text-xl"></i>
+                                <span>Innovators who want to link science with technology</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <i class="fas fa-caret-right text-tr_red mt-1.5 text-xl"></i>
+                                <span>Mentors and institutions interested in interdisciplinary work</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <i class="fas fa-caret-right text-tr_red mt-1.5 text-xl"></i>
+                                <span>Anyone curious about how science can solve everyday problems</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="py-24 border-t border-tr_lightgray relative overflow-hidden bg-[#020202]">
+        <!-- Subtle glow at bottom -->
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-tr_red/10 blur-[150px] pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10 fade-in-section">
+            <div class="font-mono text-xs text-tr_red mb-4 tracking-[0.3em] uppercase">
+                // Command Interface
+            </div>
+            <h2 class="text-4xl md:text-6xl font-bold uppercase mb-6 tracking-tight">Initiate Contact.</h2>
+            <p class="text-gray-400 mb-12 max-w-2xl mx-auto font-mono text-sm leading-relaxed">
+                Available for planetary-scale biological architecture, institutional bio-manufacturing deployments, and sovereign genomic advisory. Connect directly with the founder.
+            </p>
+            
+            <!-- Direct Contact Info Grid -->
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6 font-mono text-sm mb-12">
+                <!-- Email -->
+                <div class="flex flex-col sm:flex-row items-center gap-0 w-full md:w-auto shadow-lg shadow-black/50">
+                    <div class="px-6 py-4 border border-tr_lightgray bg-tr_gray/80 text-white flex items-center gap-3 w-full sm:w-auto justify-center">
+                        <i class="fas fa-envelope text-tr_red text-lg"></i>
+                        <span class="tracking-wide">kantpunit.bt.work@gmail.com</span>
+                    </div>
+                    <button class="copy-btn px-6 py-4 bg-tr_red text-white hover:bg-white hover:text-black transition-colors duration-300 font-bold uppercase tracking-wider w-full sm:w-auto" data-copy="founder@tenrings.bio">
+                        Copy
+                    </button>
+                </div>
+
+                <!-- Phone -->
+                <div class="flex flex-col sm:flex-row items-center gap-0 w-full md:w-auto shadow-lg shadow-black/50">
+                    <div class="px-6 py-4 border border-tr_lightgray bg-tr_gray/80 text-white flex items-center gap-3 w-full sm:w-auto justify-center">
+                        <i class="fas fa-phone-alt text-tr_red text-lg"></i>
+                        <span class="tracking-wide">+91 9473218239</span>
+                    </div>
+                    <button class="copy-btn px-6 py-4 bg-tr_red text-white hover:bg-white hover:text-black transition-colors duration-300 font-bold uppercase tracking-wider w-full sm:w-auto" data-copy="+15558924110">
+                        Copy
+                    </button>
+                </div>
+            </div>
+
+            <!-- Founder Social/Professional Links -->
+            <div class="pt-10 border-t border-tr_lightgray/50 flex flex-wrap justify-center gap-10 font-mono text-sm">
+                <a href="https://www.linkedin.com/in/punitkant/" target="_blank" class="group flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300">
+                    <div class="w-10 h-10 rounded-full border border-tr_lightgray bg-tr_black flex items-center justify-center group-hover:border-tr_red group-hover:shadow-[0_0_15px_rgba(209,17,36,0.4)] transition-all">
+                        <i class="fab fa-linkedin-in text-lg"></i>
+                    </div>
+                    <span class="uppercase tracking-widest">LinkedIn</span>
+                </a>
+                
+                <a href="https://github.com/kantpunit26" target="_blank" class="group flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300">
+                    <div class="w-10 h-10 rounded-full border border-tr_lightgray bg-tr_black flex items-center justify-center group-hover:border-tr_red group-hover:shadow-[0_0_15px_rgba(209,17,36,0.4)] transition-all">
+                        <i class="fab fa-github text-lg"></i>
+                    </div>
+                    <span class="uppercase tracking-widest">GitHub</span>
+                </a>
+            </div>
+            
+            <div class="mt-16 font-mono text-[10px] text-tr_text_muted uppercase flex flex-col md:flex-row justify-center items-center gap-4">
+                <span>© 2026 The Ten Rings Biological Architecture.</span>
+                <span class="hidden md:inline-block">|</span>
+                <span>All Bio-Systems Nominal.</span>
+                <span class="flex items-center gap-1 ml-2"><span class="w-2 h-2 bg-green-500 rounded-full inline-block animate-pulse"></span> STATUS: SECURE</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts for Interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Typewriter Effect for Hero
+            const typeWriterElement = document.getElementById('typewriter-text');
+            const texts = [
+                "Connecting life sciences with AI...",
+                "Processing genomic datasets...",
+                "Simulating sustainable ecosystems...",
+                "Hub active. Awaiting new input."
+            ];
+            let textIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            function typeWriter() {
+                const currentText = texts[textIndex];
+                
+                if (isDeleting) {
+                    typeWriterElement.textContent = currentText.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typeWriterElement.textContent = currentText.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                let typeSpeed = isDeleting ? 30 : 60;
+
+                if (!isDeleting && charIndex === currentText.length) {
+                    typeSpeed = 2500; // Pause at end
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length;
+                    typeSpeed = 500; // Pause before next string
+                }
+
+                setTimeout(typeWriter, typeSpeed);
+            }
+            
+            setTimeout(typeWriter, 1200);
+
+            // 2. Scroll Reveal Animation
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-section').forEach((section) => {
+                observer.observe(section);
+            });
+            
+            // 3. Multi-button Copy to Clipboard
+            const copyBtns = document.querySelectorAll('.copy-btn');
+            copyBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const textToCopy = this.getAttribute('data-copy');
+                    
+                    const el = document.createElement('textarea');
+                    el.value = textToCopy;
+                    document.body.appendChild(el);
+                    el.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(el);
+                    
+                    const originalText = this.textContent;
+                    this.textContent = 'COPIED';
+                    this.classList.remove('bg-tr_red');
+                    this.classList.add('bg-green-600', 'text-white');
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.classList.add('bg-tr_red');
+                        this.classList.remove('bg-green-600', 'text-white');
+                    }, 2000);
+                });
+            });
+
+            // 4. Boot Sequence Logic
+            const bootScreen = document.getElementById('boot-screen');
+            const bootText = document.getElementById('boot-text');
+            const bootProgress = document.getElementById('boot-progress');
+            const bootLines = [
+                "Initializing platform core...",
+                "Loading bioinformatics toolkits...",
+                "Connecting environmental sensors...",
+                "Structuring computational models...",
+                "Verifying open-source repositories...",
+                "Engaging interdisciplinary nodes...",
+                "Synchronizing databases...",
+                "System Ready for Discovery."
+            ];
+            
+            let lineIdx = 0;
+            let progress = 0;
+            const progressStep = 100 / bootLines.length;
+            
+            const bootInterval = setInterval(() => {
+                if (lineIdx < bootLines.length) {
+                    const newLine = document.createElement('div');
+                    newLine.textContent = `> ${bootLines[lineIdx]}`;
+                    bootText.appendChild(newLine);
+                    
+                    lineIdx++;
+                    progress += progressStep;
+                    bootProgress.style.width = `${progress}%`;
+                    
+                    bootText.scrollTop = bootText.scrollHeight;
+                } else {
+                    clearInterval(bootInterval);
+                    setTimeout(() => {
+                        bootScreen.style.opacity = '0';
+                        bootScreen.style.visibility = 'hidden';
+                    }, 800); 
+                }
+            }, 300); 
+
+            // 5. Mouse Glow Tracking
+            const root = document.documentElement;
+            document.addEventListener('mousemove', e => {
+                root.style.setProperty('--mouse-x', e.clientX + "px");
+                root.style.setProperty('--mouse-y', e.clientY + "px");
+            });
+
+            // 6. 3D Card Tilt Effect
+            const cards = document.querySelectorAll('.matrix-card');
+            cards.forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * -4; 
+                    const rotateY = ((x - centerX) / centerX) * 4;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                });
+            });
+
+            // 7. Particle Matrix Background
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 0.5;
+                    this.vy = (Math.random() - 0.5) * 0.5;
+                    this.radius = Math.random() * 1.5;
+                    this.isRed = Math.random() > 0.85; 
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+                    if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = this.isRed ? '#d11124' : '#444444';
+                    ctx.fill();
+                }
+            }
+
+            function initParticles() {
+                particles = [];
+                const numParticles = Math.min(Math.floor(window.innerWidth * window.innerHeight / 15000), 100);
+                for (let i = 0; i < numParticles; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                    
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (dist < 120) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(100, 100, 100, ${1 - dist/120})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animateParticles);
+            }
+            
+            initParticles();
+            animateParticles();
+
+            // 8. Project Previews & Modal Logic
+            const projectData = {
+                'hariyali': {
+                    title: 'HARIYALI 2.0',
+                    img: 'https://placehold.co/800x500/111/d11124?text=HARIYALI+2.0',
+                    sysName: 'ECO-NODE: HARIYALI',
+                    logs: [
+                        'Bypassing terrestrial environmental firewalls...', 
+                        'Sequencing extremophile soil microbiome data...', 
+                        'Calibrating synthetic mucilage output...',
+                        'Establishing local bio-link...',
+                        'System access granted.'
+                    ],
+                    content: `
+                        <p><strong class="text-white">Directive:</strong> Radical terra-healing and moisture retention in arid environments.</p>
+                        <p>We are engineering custom plasmids for drought-resistant extremophiles. These modified organisms create a synthetic mucilage network in dead soil, trapping water molecules and fixing nitrogen at rates 400x higher than wild-type strains.</p>
+                        <div class="bg-tr_black p-4 border border-tr_lightgray font-mono text-xs">
+                            <div class="text-tr_text_muted mb-1">>> METRICS_OVERVIEW</div>
+                            <div class="flex justify-between"><span class="text-white">Water Retention:</span><span class="text-tr_red">+412%</span></div>
+                            <div class="flex justify-between"><span class="text-white">Nitrogen Fixation:</span><span class="text-tr_red">Stable</span></div>
+                            <div class="flex justify-between"><span class="text-white">Soil Toxicity:</span><span class="text-green-500">Cleared</span></div>
+                        </div>
+                        <p class="text-tr_red font-mono text-sm">> Current Phase: Field trials in controlled desert biomes.</p>
+                    `
+                },
+                'gutek': {
+                    title: 'GUTEK',
+                    img: 'https://placehold.co/800x500/111/d11124?text=GUTEK+METABOLIC+YIELD',
+                    sysName: 'METABOLIC-FORGE: GUTEK',
+                    logs: [
+                        'Accessing synthetic yeast strains...', 
+                        'Calibrating polymer tensile strength limits...', 
+                        'Optimizing bioreactor ATP yields...', 
+                        'Verifying metabolic pathways...',
+                        'System access granted.'
+                    ],
+                    content: `
+                        <p><strong class="text-white">Directive:</strong> Complete replacement of petrochemical polymers with biologically woven materials.</p>
+                        <p>Gutek utilizes heavily edited bacterial and yeast chassis to metabolize agricultural waste into high-tensile, biodegradable polymers. The metabolic pathways are optimized using quantum simulations to ensure maximum ATP efficiency during the weaving phase.</p>
+                        <div class="bg-tr_black p-4 border border-tr_lightgray font-mono text-xs">
+                            <div class="text-tr_text_muted mb-1">>> REACTOR_STATUS</div>
+                            <div class="flex justify-between"><span class="text-white">Polymer Output:</span><span class="text-tr_red">84 kg/hr</span></div>
+                            <div class="flex justify-between"><span class="text-white">Carbon Footprint:</span><span class="text-green-500">Negative</span></div>
+                            <div class="flex justify-between"><span class="text-white">Chassis Stability:</span><span class="text-tr_red">99.8%</span></div>
+                        </div>
+                        <p class="text-tr_red font-mono text-sm">> Current Phase: Yield optimization & scaling.</p>
+                    `
+                },
+                'aegis': {
+                    title: 'PROJECT AEGIS',
+                    img: 'https://placehold.co/800x500/111/d11124?text=PROJECT+AEGIS',
+                    sysName: 'DEFENSE-GRID: AEGIS',
+                    logs: [
+                        'Waking distributed immune sensors...', 
+                        'Scanning for anomalous pathogenic signatures...', 
+                        'Running viral topology algorithms...',
+                        'Establishing secure planetary perimeter...', 
+                        'System access granted.'
+                    ],
+                    content: `
+                        <p><strong class="text-white">Directive:</strong> Real-time, planetary-scale biological threat detection.</p>
+                        <p>Aegis deploys a distributed network of synthetic biological sensors capable of sequencing and identifying novel pathogenic mutations in the environment before they cross human perimeters. The data feeds directly into our central AI for instant vaccine topology mapping.</p>
+                        <div class="bg-tr_black p-4 border border-tr_lightgray font-mono text-xs">
+                            <div class="text-tr_text_muted mb-1">>> SENSOR_GRID</div>
+                            <div class="flex justify-between"><span class="text-white">Active Nodes:</span><span class="text-tr_red">1,402</span></div>
+                            <div class="flex justify-between"><span class="text-white">Anomalies Detected:</span><span class="text-white">0</span></div>
+                            <div class="flex justify-between"><span class="text-white">AI Confidence:</span><span class="text-tr_red">99.9%</span></div>
+                        </div>
+                        <p class="text-gray-500 font-mono text-sm">> Current Phase: Sensor prototyping & algorithmic training.</p>
+                    `
+                }
+            };
+
+            const projectModal = document.getElementById('project-modal');
+            const modalBackdrop = document.getElementById('modal-backdrop');
+            const modalPanel = document.getElementById('modal-panel');
+            
+            const modalLoader = document.getElementById('modal-loader');
+            const loaderTitle = document.getElementById('loader-title');
+            const loaderProgress = document.getElementById('loader-progress');
+            const loaderLog = document.getElementById('loader-log');
+            
+            const modalDetails = document.getElementById('modal-details');
+            const modalTitle = document.getElementById('modal-title');
+            const modalImg = document.getElementById('modal-img');
+            const modalDesc = document.getElementById('modal-desc');
+            const modalCloseBtns = [document.getElementById('modal-close-btn'), document.getElementById('close-modal-bottom')];
+
+            let loadInterval;
+
+            document.querySelectorAll('.project-preview-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const projectId = btn.getAttribute('data-project');
+                    const data = projectData[projectId];
+                    if(!data) return;
+
+                    // 1. Show Modal & Trigger transition
+                    projectModal.classList.remove('hidden');
+                    projectModal.classList.add('flex');
+                    
+                    // Small delay to allow CSS transitions to catch the display change
+                    setTimeout(() => {
+                        modalBackdrop.classList.remove('opacity-0');
+                        modalPanel.classList.remove('scale-95', 'opacity-0');
+                        modalPanel.classList.add('scale-100', 'opacity-100');
+                    }, 10);
+
+                    // 2. Reset UI States to "Loading"
+                    modalLoader.classList.remove('hidden');
+                    modalLoader.classList.add('flex');
+                    modalDetails.classList.add('hidden');
+                    modalDetails.classList.remove('flex');
+                    loaderProgress.style.width = '0%';
+                    
+                    // 3. Inject Specific Loading Data
+                    loaderTitle.textContent = `CONNECTING TO ${data.sysName}...`;
+                    loaderLog.textContent = data.logs[0];
+                    
+                    let logIndex = 0;
+                    
+                    // 4. Simulate the Loading Sequence
+                    loadInterval = setInterval(() => {
+                        logIndex++;
+                        if (logIndex < data.logs.length) {
+                            loaderLog.textContent = data.logs[logIndex];
+                            loaderProgress.style.width = `${(logIndex / (data.logs.length - 1)) * 100}%`;
+                        } else {
+                            clearInterval(loadInterval);
+                            
+                            // Switch views after loading finishes
+                            setTimeout(() => {
+                                modalLoader.classList.add('hidden');
+                                modalLoader.classList.remove('flex');
+                                
+                                // Inject Content
+                                modalTitle.textContent = data.title;
+                                modalTitle.setAttribute('data-text', data.title);
+                                modalImg.src = data.img;
+                                modalDesc.innerHTML = data.content;
+
+                                modalDetails.classList.remove('hidden');
+                                modalDetails.classList.add('flex');
+                            }, 400); // slight pause at 100%
+                        }
+                    }, 600); // Log changes every 600ms
+                });
+            });
+
+            // Close Modal Logic
+            const closeModal = () => {
+                clearInterval(loadInterval); // stop loading if user closes early
+                
+                modalBackdrop.classList.add('opacity-0');
+                modalPanel.classList.remove('scale-100', 'opacity-100');
+                modalPanel.classList.add('scale-95', 'opacity-0');
+                
+                // Wait for animation to finish before hiding
+                setTimeout(() => {
+                    projectModal.classList.add('hidden');
+                    projectModal.classList.remove('flex');
+                }, 300);
+            };
+
+            modalCloseBtns.forEach(btn => btn.addEventListener('click', closeModal));
+            modalBackdrop.addEventListener('click', closeModal);
+
+        });
+    </script>
+</body>
+</html>
